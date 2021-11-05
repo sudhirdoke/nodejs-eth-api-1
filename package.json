@@ -1,0 +1,26 @@
+{
+  "name": "truffle-three",
+  "version": "1.0.0",
+  "description": "Simple NodeJs API to communicate with smart contract on local Ganache block chain, using truffle",
+  "main": "appMain.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "bootstrap": "^4.3.1",
+    "express": "^4.17.1",
+    "truffle": "^5.4.17",
+    "web3": "^1.6.0"
+  },
+  "author": "sudhirdoke@gmail.com",
+  "license": "ISC"
+}
