@@ -24,3 +24,6 @@ use following url to check record, there should be first record added in the con
 ```bash
 http://127.0.0.1:8081/getAllRecords
 ```
+
+**IMP**
+change the Account address in appMain.js, with your address of first account, displayed on Ganache dashboard
