@@ -1,5 +1,1 @@
-/*
-git remote add origin https://github.com/sudhirdoke/nodejs-eth-api-1.git
-git branch -M main
-git push -u origin main
-*/
+repository to help developing node js express api with Ganache block chain on local machine
