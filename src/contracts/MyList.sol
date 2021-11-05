@@ -30,7 +30,7 @@ contract MyList {
   this is just to demonstrate how to use constructor
  */
   constructor() {
-      createNewRecord("dummy record", "Nov 4, 2021");
+      createNewRecord("Admin Record", "Nov 4, 2021");
   } 
 
   mapping(uint => Record) public records;

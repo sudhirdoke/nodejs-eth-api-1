@@ -5,7 +5,10 @@ var myList = require("./src/abis/MyList.json")
 var Web3 = require('web3');
 var web3 = new Web3(Web3.givenProvider || 'HTTP://127.0.0.1:7545');
 
-
+/**
+ * setup contract
+ * @returns 
+ */
 async function setupContract() {
     const netId = await web3.eth.net.getId();
    const deployedNetwork = myList.networks[netId];
@@ -13,6 +16,9 @@ async function setupContract() {
     return contract;
 }
 
+/**
+ * health check end-point
+ */
 
 app.get('/health', function (req, res) {
    /*fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
@@ -22,6 +28,10 @@ app.get('/health', function (req, res) {
    res.end("health ok");
 })
 
+
+/**
+ * get record count
+ */
 app.get('/getRecordCount', async(req, res) => {
     try {
         const contract = await setupContract();
@@ -33,7 +43,9 @@ app.get('/getRecordCount', async(req, res) => {
     }
     
 })
-
+/*
+    only return 50 records
+ */
   app.get('/getAllRecords', async(req, res) => {
     try {
         const contract = await setupContract();
@@ -44,6 +56,8 @@ app.get('/getRecordCount', async(req, res) => {
         {
             const x = await contract.methods.records(i).call();
             recArr[i-1] = {"id": x[0], "data": x[1], "timestamp": x[2]};
+            if(i>50)
+                break;
         }
         res.json(recArr);
     }catch(error)
@@ -53,6 +67,9 @@ app.get('/getRecordCount', async(req, res) => {
     
 })
 
+/**
+ * add new record
+ */
 app.use(express.json())
 app.post('/addRecord', async(req, res) => {
     try {
@@ -69,6 +86,10 @@ app.post('/addRecord', async(req, res) => {
     }
 })
 
+/***
+ * update existing record
+ * can return record not found event from smart contract
+ */
 app.use(express.json())
 app.post('/updateRecord', async(req, res) =>{
     try {
@@ -87,6 +108,9 @@ app.post('/updateRecord', async(req, res) =>{
 
 })
 
+/**
+ * start listening on port 8081
+ */
 var server = app.listen(8081, function () {
    var host = server.address().address
    var port = server.address().port
